@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+h1, h2, h3, h4, h5, h6, p{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3498db
+}
+h2 {
+    text-align: center
+}
+
+p{
+    font-size: 20px;
+    text-align: center
+}
+.parent-wrapper{
+    width: 460px;
+    margin: auto;
+    display: flex;
+    padding-top: 300px
+}
+.parent{
+    margin: auto
+}
+
+ 
+
+    .loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin-top: 15px;
+  width: 31px;
+    margin: auto
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+button {
+color: #fff;
+text-transform: uppercase;
+text-decoration: none;
+background: #3498db;
+padding: 20px;
+border-radius: 5px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+margin: 10px
+}
+
+button:hover {
+background: #434343;
+letter-spacing: 1px;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+
+}
+    </style>
+</head>
+<body>
+    <div class="parent-wrapper">
+        <div class="parent">
+    <h2>The XML Http Request Object</h2>
+    <div class="buttons">
+    <button type="button" onclick="postData()">Post Data</button>
+    <button type="button" onclick="get()">Get Data</button>
+</div>
+<div class="loader-wrapper">
+    <div class="loader" id="loader"></div>
+</div>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+
+
+</div>
+</div>
+    <script>
+
+var itm = document.getElementById("loader");
+var cln = itm.cloneNode(true);
+itm.parentNode.removeChild(itm);
+
+
+        
+    function postData(){  
+    fetch('http://rest.learncode.academy/api/johnbob/friends', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({name: "Inna", age: 24}),
+    })
+    .then(response => response.json()) 
+    .then((response) => {
+        
+      console.log("Your data is approved", response); 
+      document.body.removeChild(cln)
+
+      document.getElementById("demo").innerHTML = "You data is posted!"
+    })
+ 
+       document.body.appendChild(cln);
+       }
+
+    
+
+    
+
+    function get(){
+        document.body.appendChild(cln);
+
+        fetch('http://rest.learncode.academy/api/johnbob/friends')
+    .then(response => response.json()) // response.json() returns a promise
+    .then((response) => {
+        for (let i = 0; i<response.length; i++){
+            if (response[i].name === "Inna"){
+                console.log(response[i].name);
+                document.getElementById("demo1").innerHTML = "<b> Here is your  data </b>" + "<br>" + response[i].name
+                document.body.removeChild(cln)
+
+            }
+            else {
+                console.log(response[i])
+                document.getElementById("demo1").innerHTML = response[i]
+
+                }
+        }
+    })
+    }
+
+
+    </script>
+</body>
+</html>
