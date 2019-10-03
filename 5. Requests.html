@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+h1, h2, h3, h4, h5, h6, p{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #3498db
+}
+
+.parent-wrapper{
+    width: 30%;
+    margin: auto;
+    display: flex;
+    padding-top: 300px
+}
+.parent{
+    margin: auto
+}
+    .loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin-top: 15px;
+  margin-left: 150px
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+button {
+color: #fff;
+text-transform: uppercase;
+text-decoration: none;
+background: #3498db;
+padding: 20px;
+border-radius: 5px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+margin: 10px
+}
+
+button:hover {
+background: #434343;
+letter-spacing: 1px;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+
+}
+    </style>
+</head>
+<body>
+    <div class="parent-wrapper">
+        <div class="parent">
+    <h2>The XML Http Request Object</h2>
+    <div class="buttons">
+    <button type="button" onclick="postData()">Post Data</button>
+    <button type="button" onclick="getData()">Get Data</button>
+</div>
+    <div class="loader"></div>
+
+    <p id="demo"></p>
+
+</div>
+</div>
+    <script>
+    function postData(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            console.log(JSON.parse(this.responseText));
+            let data = JSON.parse(this.responseText);
+            document.getElementById("demo").innerHTML = data.name + " " + data.age + " " + data.status
+        }
+    }
+    xhttp.open("POST", "http://rest.learncode.academy/api/learncode/friends", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify({name: "Inna", age: 24, status: "Your request is approved"}))
+    }
+    
+    </script>
+</body>
+</html>
