@@ -1,28 +1,43 @@
 <script>
-    function CoffeeMaker (){
-        this.type = "black";
-        var cofeedoze = 50;
-        var waterdoze = 100;
-        this.make = function() {
-            console.log(cofeedoze + waterdoze)
-        }
-    }
-    CoffeeMaker()
+//     function CoffeeMaker (){
+//         this.type = "black";
+//         var cofeedoze = 50;
+//         var waterdoze = 100;
+//         this.make = function() {
+//             console.log(cofeedoze + waterdoze)
+//         }
+//     }
+//     CoffeeMaker()
 
-    console.log(typeof CoffeeMaker)
-var maker = new CoffeeMaker(); 
-console.log(maker, "Hello");
+//     console.log(typeof CoffeeMaker)
+// var maker = new CoffeeMaker(); 
+// console.log(maker, "Hello");
 
-function Robot (color, name, speed){
-    this.color = color;
-    this.name = name;
-    this.speed = speed;
-    this.move = function (){
-        console.log(this.speed)
-    }
+// function Robot (color, name, speed){
+//     this.color = color;
+//     this.name = name;
+//     this.speed = speed;
+//     this.move = function (){
+//         console.log(this.speed)
+//     }
+// }
+
+// let newRobot = new Robot ("green", "Robotus", 0);
+// console.log(newRobot)
+
+
+
+// zenq voric generacnum enq 2 zenq, naxatip@ petqa unena model, pampusht, pampushti tesak,
+// gorcoghutyun krakel, krakelu a random pampushtner, krakel kancheluc pampushti qanak@ random 
+
+function Gun (model, bulletType){
+    this.model = model;
+    this.bulletType = bulletType;
+    this.bullet = Math.floor(Math.random()*10) + " " + bulletType + "s";
+    this.shoot = "Your" + " " + this.model + " " + "shots " + this.bullet;
+    console.log(this.shoot)
 }
 
-let newRobot = new Robot ("green", "Robotus", 0);
-console.log(newRobot)
-
+let newGun = new Gun ("pistol", "Rimless");
+console.log(newGun)
 </script>
